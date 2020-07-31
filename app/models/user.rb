@@ -69,6 +69,12 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
   
+  # Определяет прото-ленту.
+  # Полная реализация в "Следовании за пользователями".
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+  
   private
 
     # Переводит адрес электронной почты в нижний регистр.
